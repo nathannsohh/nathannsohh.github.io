@@ -3,6 +3,7 @@ import OvsLogo from '../images/ovs-logo.png';
 import Card from '../components/Card';
 import CandidateCard from '../components/CandidateCard';
 import ConfirmModal from '../components/ConfirmModal';
+import LogoutButton from '../components/LogoutButton'
 import styles from './Voting.module.css';
 import { Link } from 'react-router-dom';
 
@@ -60,9 +61,7 @@ const Voting = () => {
     return (
         <>
             <img src={OvsLogo} width="15%" alt="OVS Logo"/>
-            <Link to="/">
-                <button className={styles.logout}>Log Out</button>
-            </Link>
+            <LogoutButton page="voting"/>
             <Card page="main">
                 {selectedIndex != null && <button className={styles["remove-button"]} onClick={removeVoteHandler}>Remove Vote</button>}
                 <h1 className={styles["vote-title"]}>Cast Your Vote!</h1>

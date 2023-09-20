@@ -51,23 +51,3 @@
     font-size: 20px;
     margin-bottom: 20px;
 }
-
-.logout {
-    height: 40px;
-    width: 200px;
-    font-size: 20px;
-    font-weight: 600;
-    position:absolute;
-    border-radius: 10px;
-    background: #CC0000;
-    border-color: #CC0000;
-    border-style: solid;
-    top:40px;
-    right:70px;
-}
-
-.logout:hover {
-    cursor: grab;
-    background: #a10202;
-    border-color: #a10202;
-}

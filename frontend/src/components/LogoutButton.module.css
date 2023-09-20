@@ -1,0 +1,24 @@
+.log-out {
+    width: 250px;
+    height: 50px;
+    background: #CC0000;
+    border-color: #CC0000;
+    border-radius: 10px;
+    border-style: solid;
+    font-size: 20px;
+    font-weight: 600;
+    margin-top: 20px;
+
+    &.voting {
+        top:5%;
+        right:70px;
+        position:absolute;
+        width: 100px;
+    }
+}
+
+.log-out:hover {
+    background: #a70000;
+    border-color: #a70000;
+    cursor: grab;
+}
