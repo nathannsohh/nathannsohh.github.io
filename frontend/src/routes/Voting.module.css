@@ -1,0 +1,73 @@
+.vote-title {
+    color: #000;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    margin-top: 0px;
+    margin-bottom: 20px;
+}
+
+.submit-button {
+    width: 400px;
+    height: 70px;
+    background: black;
+    color: white;
+    font-weight: 800;
+    font-size: 30px;
+    border-radius: 10px;
+    border-style: solid;
+    border-color: #000;
+}
+
+.submit-button:hover {
+    cursor: grab;
+    background: rgb(34, 33, 33);
+    border-color: rgb(34, 33, 33);
+}
+
+.remove-button {
+    height: 40px;
+    width: 200px;
+    font-size: 20px;
+    font-weight: 600;
+    position:absolute;
+    border-radius: 10px;
+    background: #CC0000;
+    border-color: #CC0000;
+    border-style: solid;
+    top:40px;
+    right:70px;
+}
+
+.remove-button:hover {
+    cursor: grab;
+    background: #a10202;
+    border-color: #a10202;
+}
+
+.helptext {
+    display: block;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.logout {
+    height: 40px;
+    width: 200px;
+    font-size: 20px;
+    font-weight: 600;
+    position:absolute;
+    border-radius: 10px;
+    background: #CC0000;
+    border-color: #CC0000;
+    border-style: solid;
+    top:40px;
+    right:70px;
+}
+
+.logout:hover {
+    cursor: grab;
+    background: #a10202;
+    border-color: #a10202;
+}

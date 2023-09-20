@@ -1,0 +1,41 @@
+.candidate-picture {
+    height: 250px;
+    width: 250px;
+    margin: 0px;
+    vertical-align: middle;
+}
+
+.candidate-name {
+    color: black;
+    display: block;
+    font-size: 18px;
+    font-weight: 600;
+    margin-top: 15px;
+}
+
+.voting-button {
+    width: 250px;
+    height: 70px;
+    margin-top: 15px;
+    border-color: white;
+    border-style: solid;
+    background: white;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size:larger;
+    font-weight: 800;
+
+    &.white {
+        color: white;
+    }
+
+    &.white:hover {
+        color: rgb(215, 215, 215);
+    }
+}
+
+.voting-button:hover {
+    background: rgb(215, 215, 215);
+    border-color: rgb(215, 215, 215);
+}

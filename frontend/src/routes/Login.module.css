@@ -1,0 +1,36 @@
+.title {
+    color: black;
+    font-size: 40px;
+    font-weight: 800;
+    font-style: normal;
+    line-height: normal;
+    margin-top: 0px;
+    margin-bottom:10%;
+}
+
+.button {
+    width: 380px;
+    height: 70px;
+    background: #F00;
+    flex-shrink: 0;
+    border-radius: 10px;
+    color: white;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    border-color:#F00;
+    box-shadow: none;
+    border-style: solid;
+}
+
+.button:hover {
+    background:rgb(134, 22, 22);
+    border-color: rgb(134, 22, 22);;
+    cursor:grab;
+}
+
+.logo {
+    width: 25%;
+    margin-top: 70px;
+}
