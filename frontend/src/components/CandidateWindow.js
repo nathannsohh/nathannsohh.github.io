@@ -38,9 +38,9 @@ const CandidateWindow = (props) => {
                 {selectedIndex != null && <button className={styles["remove-button"]} onClick={removeVoteHandler}>Cancel</button>}
                 <h1 className={styles["vote-title"]}>Cast Your Vote!</h1>
                 <span className={styles.helptext}>Click on the white box under the candidate's name to select the candidate and click on Submit Vote to submit the vote!</span>
-                {props.candidates.map((candidate, index) => {
+                {props.candidates.length > 0 ? props.candidates.map((candidate, index) => {
                     return <CandidateCard imageURL={candidate.imageURL} name={candidate.name} selected = {selectonState[index]} key={index} index={index} updateSelection={updateSelectionState}/>
-                })}
+                }) : <span>No candidates at the moment.</span>}
         </Card>
     )
 }

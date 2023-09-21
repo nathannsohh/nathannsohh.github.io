@@ -10,22 +10,7 @@ import VoteCompletedCard from '../components/VoteCompletedCard';
 import Error from '../components/Error';
 import styles from './Voting.module.css';
 
-const candidates = [
-    {
-        imageURL: "https://milkeninstitute.org/sites/default/files/grid/speakers/0031U000026RrXCQA0-bc83e1d0c023510bb1726aafa0800863.png",
-        name: "Tharman Shanmugaratnam"
-    },
-    {
-        imageURL: "https://asb.edu.my/wp-content/uploads/2023/03/BoG-photo-NKS.jpg",
-        name: "Ng Kok Song"
-    },
-    {
-        imageURL: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Tan_Kin_Lian_in_a_suit_and_tie.jpg/220px-Tan_Kin_Lian_in_a_suit_and_tie.jpg",
-        name: "Tan Kin Lian"
-    }
-]
-
-const URL = "http://localhost:8000/user";
+const URL = process.env.REACT_APP_API_URL;
 
 const Voting = () => {
 
@@ -33,6 +18,7 @@ const Voting = () => {
     
     
     const [selectedIndex, setSelectedIndex] = useState(null);
+    const [candidates, setCandidates] = useState([]);
     const [showModal, setShowModal] = useState(false);
     const [voteCompleted, setVoteCompleted] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -42,20 +28,27 @@ const Voting = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const searchResult = await axios.get(URL, { params: { id: user.sub }});
-                if (searchResult.data.user) {
-                    setVoteCompleted(searchResult.data.user.voted);
+                const getUserPromise = axios.get(URL + '/user', { params: { id: user.sub }});
+                const getCandidatesPromise = axios.get(URL + '/candidates');
+                const [userResult, candidateResult] = await Promise.all([getUserPromise, getCandidatesPromise]);
+                
+                if (userResult.data.user) {
+                    setVoteCompleted(userResult.data.user.voted);
                 } else {
-                    const createResult = await axios.post(URL, {
+                    await axios.post(URL, {
                         name: user.name,
                         auth0_id: user.sub,
                     })
                     setVoteCompleted(false);
                 }
-                setLoading(false);
+
+                if (candidateResult.data.success && candidateResult.data.candidates.length) {
+                    setCandidates(candidateResult.data.candidates);
+                }
             } catch (e) {
                 setError(true)
-                setLoading(false);
+            } finally {
+                setLoading(false)
             }
         }
 
@@ -64,8 +57,6 @@ const Voting = () => {
             return;
         }
         fetchData();
-        setLoading(false);
-        
     }, [])
 
     const submitVoteHandler = () => {
@@ -82,7 +73,7 @@ const Voting = () => {
 
     const voteHandler = async () => {
         try {
-            const response = await axios.put(URL, {
+            const response = await axios.put(URL + '/user', {
                 auth0_id: user.sub,
                 name: user.name,
                 voted: true,
@@ -92,10 +83,10 @@ const Voting = () => {
             if (response.data.success) {
                 setVoteCompleted(true);
             }
-    
-            setShowModal(false);
         } catch (e) {
             setError(true)
+        } finally {
+            setShowModal(false);
         }
     }
 
