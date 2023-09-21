@@ -1,4 +1,3 @@
-import {react, useState} from 'react';
 import Card from './Card';
 import styles from './CandidateCard.module.css'
 
@@ -19,4 +18,4 @@ const CandidateCard = (props) => {
     )
 }
 
-export default CandidateCard
+export default CandidateCard;
