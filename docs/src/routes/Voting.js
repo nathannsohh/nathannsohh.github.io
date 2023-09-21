@@ -7,6 +7,7 @@ import CandidateWindow from '../components/CandidateWindow';
 import ConfirmModal from '../components/ConfirmModal';
 import LogoutButton from '../components/LogoutButton'
 import VoteCompletedCard from '../components/VoteCompletedCard';
+import Error from '../components/Error';
 import styles from './Voting.module.css';
 
 const candidates = [
@@ -24,39 +25,45 @@ const candidates = [
     }
 ]
 
+const URL = "http://localhost:8000/user";
+
 const Voting = () => {
 
-    const { user, isAuthenticated, isLoading } = useAuth0();
+    const { user, isAuthenticated } = useAuth0();
     
     
     const [selectedIndex, setSelectedIndex] = useState(null);
     const [showModal, setShowModal] = useState(false);
-    const [voteCompleted, setVoteCompleted] = useState(false);
-    const [loading, setLoading] = useState(false);
+    const [voteCompleted, setVoteCompleted] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(false);
 
 
     useEffect(() => {
-
         const fetchData = async () => {
-            const searchResult = await axios.get("http://localhost:8000/user",{ params: { id: user.sub }});
-            if (searchResult.data.user) {
-                setVoteCompleted(searchResult.data.user.voted);
-            } else {
-                const createResult = await axios.post("http://localhost:8000/user", {
-                    name: user.name,
-                    auth0_id: user.sub,
-                })
-                setVoteCompleted(false);
+            try {
+                const searchResult = await axios.get(URL, { params: { id: user.sub }});
+                if (searchResult.data.user) {
+                    setVoteCompleted(searchResult.data.user.voted);
+                } else {
+                    const createResult = await axios.post(URL, {
+                        name: user.name,
+                        auth0_id: user.sub,
+                    })
+                    setVoteCompleted(false);
+                }
+                setLoading(false);
+            } catch (e) {
+                setError(true)
+                setLoading(false);
             }
         }
-        setLoading(true);
+
         if (!isAuthenticated) {
             setLoading(false);
             return;
         }
-
         fetchData();
-
         setLoading(false);
         
     }, [])
@@ -74,31 +81,39 @@ const Voting = () => {
     }
 
     const voteHandler = async () => {
-        const response = await axios.put("http://localhost:8000/user", {
-            auth0_id: user.sub,
-            name: user.name,
-            voted: true,
-            selection: selectedIndex
-        })
-
-        if (response.data.success) {
-            setVoteCompleted(true);
+        try {
+            const response = await axios.put(URL, {
+                auth0_id: user.sub,
+                name: user.name,
+                voted: true,
+                selection: selectedIndex
+            })
+    
+            if (response.data.success) {
+                setVoteCompleted(true);
+            }
+    
+            setShowModal(false);
+        } catch (e) {
+            setError(true)
         }
-
-        setShowModal(false);
     }
 
     return (
         <>
             <img src={OvsLogo} width="15%" alt="OVS Logo"/>
             {
-                voteCompleted ? <VoteCompletedCard /> : 
+                loading ? (<div style={{color:'black'}}>loading...</div> 
+                ): ( error ? <Error /> :
+                (voteCompleted ? 
+                <VoteCompletedCard /> : (
                 <div>
-                    <LogoutButton page="voting"/>
                     <CandidateWindow candidates={candidates} candidateSelectionHandler={candidateSelectionHandler}/>
                     <button className={styles["submit-button"]} onClick={submitVoteHandler}>Submit Vote</button>
-                </div>
-            }
+                </div>)
+           ))
+           }
+            {(voteCompleted) ? null : <LogoutButton page="voting"/>}
             {showModal && <ConfirmModal submit={voteHandler} closeModal={closeModalHandler} selectedName={selectedIndex != null ? candidates[selectedIndex].name : null}/>}
         </>
     )
