@@ -9,8 +9,8 @@ import styles from './Login.module.css';
 const Login = (props) => {
     const { loginWithRedirect } = useAuth0();
     
-    const loginHandler = () => {
-        loginWithRedirect();
+    const loginHandler = async () => {
+        await loginWithRedirect();
     }
     return (
         <>

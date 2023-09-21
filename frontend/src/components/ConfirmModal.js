@@ -14,7 +14,7 @@ const ConfirmModal = (props) => {
                         <span className={styles["modal-text"]}>You are casting your vote for <b>{props.selectedName}</b>. To proceed, please scan the QR code below to digitally sign your vote. <i>(Click on the QR Code to simulate the Digital Signing process)</i></span> :
                         <span className={styles["modal-text"]}>You have not selected a candidate and your vote will be voided. To proceed, please scan the QR code below to digitally sign your vote. <i>(Click on the QR Code to simulate the Digital Signing process)</i></span> 
                 }
-                <div>
+                <div onClick={props.submit}>
                     <img src={QrCode} alt="Digital Signature QR Code" width="30%"/>
                 </div>
             </Card>
