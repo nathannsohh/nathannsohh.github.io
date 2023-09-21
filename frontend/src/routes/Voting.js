@@ -1,11 +1,13 @@
-import { react, useState } from 'react';
+import { react, useEffect, useState } from 'react';
+import { useAuth0 } from '@auth0/auth0-react';
+import axios from 'axios';
+
 import OvsLogo from '../images/ovs-logo.png';
-import Card from '../components/Card';
-import CandidateCard from '../components/CandidateCard';
+import CandidateWindow from '../components/CandidateWindow';
 import ConfirmModal from '../components/ConfirmModal';
 import LogoutButton from '../components/LogoutButton'
+import VoteCompletedCard from '../components/VoteCompletedCard';
 import styles from './Voting.module.css';
-import { Link } from 'react-router-dom';
 
 const candidates = [
     {
@@ -24,21 +26,40 @@ const candidates = [
 
 const Voting = () => {
 
-    const createSelectionState = (index = null) => {
-        let state = []
-        for (let i = 0; i < candidates.length; i++) {
-            if (index === i) {
-                state.push(true)
-            } else {
-                state.push(false);
-            }
-        }
-        return state;
-    }
-
-    const [selectonState, setSelectionState] = useState(createSelectionState());
+    const { user, isAuthenticated, isLoading } = useAuth0();
+    
+    
     const [selectedIndex, setSelectedIndex] = useState(null);
     const [showModal, setShowModal] = useState(false);
+    const [voteCompleted, setVoteCompleted] = useState(false);
+    const [loading, setLoading] = useState(false);
+
+
+    useEffect(() => {
+
+        const fetchData = async () => {
+            const searchResult = await axios.get("http://localhost:8000/user",{ params: { id: user.sub }});
+            if (searchResult.data.user) {
+                setVoteCompleted(searchResult.data.user.voted);
+            } else {
+                const createResult = await axios.post("http://localhost:8000/user", {
+                    name: user.name,
+                    auth0_id: user.sub,
+                })
+                setVoteCompleted(false);
+            }
+        }
+        setLoading(true);
+        if (!isAuthenticated) {
+            setLoading(false);
+            return;
+        }
+
+        fetchData();
+
+        setLoading(false);
+        
+    }, [])
 
     const submitVoteHandler = () => {
         setShowModal(true);
@@ -48,30 +69,37 @@ const Voting = () => {
         setShowModal(false);
     }
 
-    const updateSelectionState = (index) => {
-        setSelectionState(createSelectionState(index));
+    const candidateSelectionHandler = (index) => {
         setSelectedIndex(index);
     }
 
-    const removeVoteHandler = () => {
-        setSelectionState(createSelectionState());
-        setSelectedIndex(null);
+    const voteHandler = async () => {
+        const response = await axios.put("http://localhost:8000/user", {
+            auth0_id: user.sub,
+            name: user.name,
+            voted: true,
+            selection: selectedIndex
+        })
+
+        if (response.data.success) {
+            setVoteCompleted(true);
+        }
+
+        setShowModal(false);
     }
 
     return (
         <>
             <img src={OvsLogo} width="15%" alt="OVS Logo"/>
-            <LogoutButton page="voting"/>
-            <Card page="main">
-                {selectedIndex != null && <button className={styles["remove-button"]} onClick={removeVoteHandler}>Remove Vote</button>}
-                <h1 className={styles["vote-title"]}>Cast Your Vote!</h1>
-                <span className={styles.helptext}>Click on the white box under the candidate's name to select the candidate and click on Submit Vote to submit the vote!</span>
-                {candidates.map((candidate, index) => {
-                    return <CandidateCard imageURL={candidate.imageURL} name={candidate.name} selected = {selectonState[index]} key={index} index={index} updateSelection={updateSelectionState}/>
-                })}
-            </Card>
-            <button className={styles["submit-button"]} onClick={submitVoteHandler}>Submit Vote</button>
-            {showModal && <ConfirmModal closeModal={closeModalHandler} selectedName={selectedIndex != null ? candidates[selectedIndex].name : null}/>}
+            {
+                voteCompleted ? <VoteCompletedCard /> : 
+                <div>
+                    <LogoutButton page="voting"/>
+                    <CandidateWindow candidates={candidates} candidateSelectionHandler={candidateSelectionHandler}/>
+                    <button className={styles["submit-button"]} onClick={submitVoteHandler}>Submit Vote</button>
+                </div>
+            }
+            {showModal && <ConfirmModal submit={voteHandler} closeModal={closeModalHandler} selectedName={selectedIndex != null ? candidates[selectedIndex].name : null}/>}
         </>
     )
 }
