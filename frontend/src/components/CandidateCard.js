@@ -1,5 +1,5 @@
 import Card from './Card';
-import styles from './CandidateCard.module.css'
+import styles from './CandidateCard.module.scss'
 
 const CandidateCard = (props) => {
     const imageLink = props.imageURL;

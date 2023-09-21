@@ -1,5 +1,5 @@
 import react from 'react';
-import styles from './LogoutButton.module.css';
+import styles from './LogoutButton.module.scss';
 import { useAuth0 } from '@auth0/auth0-react';
 
 const LogoutButton = (props) => {
