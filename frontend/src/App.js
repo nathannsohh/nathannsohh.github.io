@@ -1,6 +1,6 @@
 import './App.css';
 
-import { useNavigate, BrowserRouter, Routes, Route } from 'react-router-dom';
+import { useNavigate, BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { Auth0Provider, withAuthenticationRequired } from '@auth0/auth0-react';
 
 import Voting from './routes/Voting';
@@ -40,6 +40,7 @@ function App() {
             element={<ProtectedRoute component={Voting} />}
           />
           <Route path="/" element={<Login />} />
+          <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </Auth0ProviderWithRedirectCallback>
     </BrowserRouter>
