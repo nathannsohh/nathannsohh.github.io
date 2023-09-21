@@ -7,12 +7,10 @@ app.use(express.json());
 app.use(cors());
 
 const UserRouter = require("./user/user.routes");
+const CandidateRouter = require("./candidate/candidate.routes");
 
 UserRouter.routesConfig(app);
-
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
+CandidateRouter.routesConfig(app);
 
 app.listen(port, () => {
   console.log(`OVS API listening on port ${port}`)
