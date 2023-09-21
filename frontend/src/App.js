@@ -31,7 +31,7 @@ function App() {
         domain={process.env.REACT_APP_AUTH0_DOMAIN}
         clientId={process.env.REACT_APP_AUTH0_CLIENT_ID}
         authorizationParams={{
-          redirect_uri: "http://localhost:3001/vote"
+          redirect_uri: "https://nathannsohh.github.io/vote"
         }}
       >
         <Routes>
