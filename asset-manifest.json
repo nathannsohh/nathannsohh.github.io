@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/static/css/main.0e0e092f.css",
+    "main.js": "/static/js/main.d605701c.js",
+    "static/js/787.cda612ba.chunk.js": "/static/js/787.cda612ba.chunk.js",
+    "static/media/ovs-logo.png": "/static/media/ovs-logo.801b2ba13bc96559a5fc.png",
+    "static/media/qr-code.svg": "/static/media/qr-code.cff853cb5beff306597bcb9434e4d748.svg",
+    "index.html": "/index.html",
+    "main.0e0e092f.css.map": "/static/css/main.0e0e092f.css.map",
+    "main.d605701c.js.map": "/static/js/main.d605701c.js.map",
+    "787.cda612ba.chunk.js.map": "/static/js/787.cda612ba.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.0e0e092f.css",
+    "static/js/main.d605701c.js"
+  ]
+}
