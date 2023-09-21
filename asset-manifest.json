@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/static/css/main.0e0e092f.css",
-    "main.js": "/static/js/main.b88619a2.js",
+    "main.css": "/static/css/main.9ad538f7.css",
+    "main.js": "/static/js/main.ad358dad.js",
     "static/js/787.cda612ba.chunk.js": "/static/js/787.cda612ba.chunk.js",
     "static/media/ovs-logo.png": "/static/media/ovs-logo.801b2ba13bc96559a5fc.png",
     "static/media/qr-code.svg": "/static/media/qr-code.cff853cb5beff306597bcb9434e4d748.svg",
     "index.html": "/index.html",
-    "main.0e0e092f.css.map": "/static/css/main.0e0e092f.css.map",
-    "main.b88619a2.js.map": "/static/js/main.b88619a2.js.map",
+    "main.9ad538f7.css.map": "/static/css/main.9ad538f7.css.map",
+    "main.ad358dad.js.map": "/static/js/main.ad358dad.js.map",
     "787.cda612ba.chunk.js.map": "/static/js/787.cda612ba.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.0e0e092f.css",
-    "static/js/main.b88619a2.js"
+    "static/css/main.9ad538f7.css",
+    "static/js/main.ad358dad.js"
   ]
 }
