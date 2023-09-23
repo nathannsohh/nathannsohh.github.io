@@ -1,7 +1,7 @@
 import { react, useState } from 'react';
 import Card from './Card';
 import CandidateCard from './CandidateCard';
-import styles from './CandidateWindow.module.css'
+import styles from './CandidateWindow.module.scss'
 
 const CandidateWindow = (props) => {
 

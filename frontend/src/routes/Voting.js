@@ -8,7 +8,7 @@ import ConfirmModal from '../components/ConfirmModal';
 import LogoutButton from '../components/LogoutButton'
 import VoteCompletedCard from '../components/VoteCompletedCard';
 import Error from '../components/Error';
-import styles from './Voting.module.css';
+import styles from './Voting.module.scss';
 
 const URL = process.env.REACT_APP_API_URL;
 

@@ -1,7 +1,7 @@
 import react from 'react';
 import Card from './Card';
 import QrCode from '../images/qr-code.svg'
-import styles from './ConfirmModal.module.css'
+import styles from './ConfirmModal.module.scss'
 
 const ConfirmModal = (props) => {
     return (

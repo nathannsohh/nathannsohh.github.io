@@ -1,7 +1,7 @@
 import Card from './Card';
 import LogoutButton from './LogoutButton';
 
-import styles from './VoteCompletedCard.module.css';
+import styles from './VoteCompletedCard.module.scss';
 
 const VoteCompletedCard = () => {
     return (

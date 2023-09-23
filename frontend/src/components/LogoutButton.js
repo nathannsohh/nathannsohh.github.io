@@ -13,12 +13,11 @@ const LogoutButton = (props) => {
     }
 
     return (
-        <>
-            <button 
-                className={`${styles["log-out"]} ${props.page === "voting" ? styles.voting : ""}`}
-                onClick={logoutHandler}
-                >Log Out</button>
-        </>
+        <button 
+            className={`${styles["log-out"]} ${props.page === "voting" ? styles.voting : ""}`}
+            onClick={logoutHandler}>
+            Log Out
+        </button>
     )
 }
 
