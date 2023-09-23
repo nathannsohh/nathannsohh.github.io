@@ -2,7 +2,7 @@
 The Online Voting System (OVS) is a website built to facilitate voting online instead of having to physically visit a polling station to cast your vote. This project is a submission for GovTech's TAP programme.
 
 ## Documents
-Documents related to this submission is in <DOC_NAME>.pdf file at the root of ths project. You may access the source code of the frontend and backend by looking into the frontend/backend directories respectively.
+Documents related to this submission is in Documentation.pdf file at the root of ths project. You may access the source code of the frontend and backend by looking into the frontend/backend directories respectively.
 
 ## Tech Stack
 - MongoDB
