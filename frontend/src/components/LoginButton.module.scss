@@ -1,27 +1,20 @@
-.title {
-    color: black;
-    font-size: 40px;
-    font-weight: 800;
-    font-style: normal;
-    line-height: normal;
-    margin-top: 0px;
-    margin-bottom:10%;
-}
-
 .button {
-    width: 380px;
+    width: fit-content;
     height: 70px;
-    background: #F00;
+    background: #CF0B15;
     flex-shrink: 0;
     border-radius: 10px;
     color: white;
     font-size: 30px;
     font-style: normal;
-    font-weight: 800;
+    font-weight:900;
     line-height: normal;
-    border-color:#F00;
+    border-color:#CF0B15;;
     box-shadow: none;
     border-style: solid;
+    display:flex;
+    align-items: center;
+    padding:10px;
 }
 
 .button:hover {
@@ -31,6 +24,7 @@
 }
 
 .logo {
-    width: 25%;
-    margin-top: 70px;
+    height: 25px;
+    margin-top: 10px;
+    margin-left: 6px;
 }
