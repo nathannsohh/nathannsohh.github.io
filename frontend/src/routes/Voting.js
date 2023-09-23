@@ -35,7 +35,7 @@ const Voting = () => {
                 if (userResult.data.user) {
                     setVoteCompleted(userResult.data.user.voted);
                 } else {
-                    await axios.post(URL, {
+                    await axios.post(URL + '/user', {
                         name: user.name,
                         auth0_id: user.sub,
                     })
