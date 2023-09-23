@@ -94,7 +94,7 @@ const Voting = () => {
         <>
             <img src={OvsLogo} width="15%" alt="OVS Logo"/>
             {
-                loading ? (<div style={{color:'black'}}>loading...</div> 
+                loading ? (<div style={{color:'black'}}></div> 
                 ): ( error ? <Error /> :
                 (voteCompleted ? 
                 <VoteCompletedCard /> : (
