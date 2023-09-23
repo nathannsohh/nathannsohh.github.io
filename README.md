@@ -10,7 +10,7 @@ Documents related to this submission is in <DOC_NAME>.pdf file at the root of th
 - ReactJS 
 - NodeJS
 
-##1 Deployment
+## Deployment
 You may access the finished website at this [link](https://nathannsohh.github.io/).
 - The frontend was deployed on Github Pages.
 - The backend was deployed on Google Cloud's Compute Engine.
